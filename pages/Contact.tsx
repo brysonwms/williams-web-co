@@ -11,10 +11,31 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const encodedData = new URLSearchParams({
+    "form-name": "contact",
+    name: formData.name,
+    email: formData.email,
+    service: formData.service,
+    message: formData.message,
+  }).toString();
+
+  try {
+    await fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: encodedData,
+    });
+
     setSubmitted(true);
-  };
+  } catch (error) {
+    alert("Something went wrong. Please try again.");
+  }
+};
 
   return (
     <div className="pt-32 pb-24 relative overflow-hidden">
@@ -71,13 +92,23 @@ const Contact: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8">
+             <form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  onSubmit={handleSubmit}
+  className="space-y-8"
+>
+  <input type="hidden" name="form-name" value="contact" />
+<input type="hidden" name="bot-field" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">Your Name</label>
                     <input 
                       required
-                      type="text" 
+                      type="text"
+                      name="name" 
                       id="name"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -90,6 +121,7 @@ const Contact: React.FC = () => {
                     <input 
                       required
                       type="email" 
+                      name="email"
                       id="email"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -103,6 +135,7 @@ const Contact: React.FC = () => {
                   <label htmlFor="service" className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">Service Interest</label>
                   <select 
                     id="service"
+                    name="service"
                     value={formData.service}
                     onChange={(e) => setFormData({...formData, service: e.target.value})}
                     className="w-full px-6 py-4 bg-zinc-50 border border-zinc-100 rounded-2xl focus:ring-2 focus:ring-brand-blue focus:bg-white transition-all outline-none font-bold appearance-none cursor-pointer"
@@ -119,6 +152,7 @@ const Contact: React.FC = () => {
                   <textarea 
                     required
                     id="message"
+                    name="message"
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
