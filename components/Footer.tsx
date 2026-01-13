@@ -94,11 +94,14 @@ const Footer = () => {
 
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
           <p>&copy; {currentYear} Williams Web Co</p>
-          <div className="flex space-x-8">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
-            <a href="#" className="hover:text-white transition-colors">Accessibility</a>
-          </div>
+        <div className="flex space-x-8">
+  <Link to="/privacy" className="hover:text-white transition-colors">
+    Privacy
+  </Link>
+  <Link to="/terms" className="hover:text-white transition-colors">
+    Terms
+  </Link>
+</div> 
         </div>
       </div>
     </footer>
