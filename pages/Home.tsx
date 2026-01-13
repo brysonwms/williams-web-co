@@ -1,14 +1,10 @@
 
 import React from 'react';
 import { ArrowRight, CheckCircle, Smartphone, Zap, ShieldCheck } from 'lucide-react';
-import { Page } from '../types';
 import { SERVICES, STATS, TESTIMONIALS } from '../constants';
+import { Link } from 'react-router-dom';
 
-interface HomeProps {
-  setCurrentPage: (page: Page) => void;
-}
-
-const Home: React.FC<HomeProps> = ({ setCurrentPage }) => {
+const Home: React.FC = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -38,19 +34,19 @@ const Home: React.FC<HomeProps> = ({ setCurrentPage }) => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <button 
-              onClick={() => setCurrentPage('contact')}
-              className="w-full sm:w-auto px-10 py-4 brand-gradient text-white font-bold rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-brand-blue/30 transition-all flex items-center justify-center group"
-            >
-              Start Your Project
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button 
-              onClick={() => setCurrentPage('portfolio')}
-              className="w-full sm:w-auto px-10 py-4 bg-white text-zinc-900 font-bold rounded-full border border-zinc-200 hover:border-brand-blue hover:text-brand-blue transition-all shadow-sm"
-            >
-              View Recent Work
-            </button>
+            <Link
+  to="/contact"
+  className="w-full sm:w-auto px-10 py-4 brand-gradient text-white font-bold rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-brand-blue/30 transition-all flex items-center justify-center group"
+>
+  Start Your Project
+  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+</Link>
+            <Link
+  to="/portfolio"
+  className="w-full sm:w-auto px-10 py-4 bg-white text-zinc-900 font-bold rounded-full border border-zinc-200 hover:border-brand-blue hover:text-brand-blue transition-all shadow-sm text-center"
+>
+  View Recent Work
+</Link>
           </div>
 
           <div className="mt-24 pt-10 border-t border-zinc-200/60 grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -177,12 +173,12 @@ const Home: React.FC<HomeProps> = ({ setCurrentPage }) => {
             <p className="text-white/80 text-lg md:text-xl mb-12 max-w-2xl mx-auto font-medium">
               Join the dozens of businesses scaling their growth with Williams Web Co.
             </p>
-            <button 
-              onClick={() => setCurrentPage('contact')}
-              className="px-12 py-5 bg-white text-brand-deep font-black rounded-full hover:scale-105 transition-all text-xl shadow-2xl active:scale-95"
-            >
-              Claim Your Free Consultation
-            </button>
+            <Link
+  to="/contact"
+  className="px-12 py-5 bg-white text-brand-deep font-black rounded-full hover:scale-105 transition-all text-xl shadow-2xl active:scale-95 inline-block"
+>
+  Claim Your Free Consultation
+</Link>
           </div>
         </div>
       </section>

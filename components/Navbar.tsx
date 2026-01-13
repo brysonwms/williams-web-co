@@ -22,7 +22,6 @@ const Navbar = () => {
 
   const closeMenu = () => {
     setIsOpen(false);
-    window.scrollTo(0, 0);
   };
 
   return (
@@ -79,6 +78,7 @@ const Navbar = () => {
           {/* Mobile Toggle */}
           <div className="md:hidden">
             <button
+              aria-label="Toggle menu"
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 text-zinc-600 hover:text-brand-blue transition-colors"
             >

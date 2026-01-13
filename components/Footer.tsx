@@ -1,14 +1,9 @@
-
+import { Link } from "react-router-dom";
 import React from 'react';
 import { Mail, Instagram, Linkedin, Twitter, Phone } from 'lucide-react';
-import { Page } from '../types';
 import Logo from './Logo';
 
-interface FooterProps {
-  setCurrentPage: (page: Page) => void;
-}
-
-const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
+const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -39,11 +34,27 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
           <div>
             <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-xs">Navigation</h4>
             <ul className="space-y-4 text-sm font-medium">
-              <li><button onClick={() => setCurrentPage('home')} className="hover:text-brand-blue transition-colors">Home</button></li>
-              <li><button onClick={() => setCurrentPage('services')} className="hover:text-brand-blue transition-colors">Services</button></li>
-              <li><button onClick={() => setCurrentPage('portfolio')} className="hover:text-brand-blue transition-colors">Portfolio</button></li>
-              <li><button onClick={() => setCurrentPage('about')} className="hover:text-brand-blue transition-colors">Our Story</button></li>
-            </ul>
+  <li>
+    <Link to="/" className="hover:text-brand-blue transition-colors">
+      Home
+    </Link>
+  </li>
+  <li>
+    <Link to="/services" className="hover:text-brand-blue transition-colors">
+      Services
+    </Link>
+  </li>
+  <li>
+    <Link to="/portfolio" className="hover:text-brand-blue transition-colors">
+      Portfolio
+    </Link>
+  </li>
+  <li>
+    <Link to="/about" className="hover:text-brand-blue transition-colors">
+      Our Story
+    </Link>
+  </li>
+</ul>
           </div>
 
           {/* Services */}
@@ -70,12 +81,12 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
                 <span className="group-hover:text-white transition-colors text-[13px]">(919) 888-0676</span>
               </li>
               <li>
-                <button 
-                  onClick={() => setCurrentPage('contact')}
-                  className="w-full mt-2 py-4 brand-gradient text-white rounded-xl font-bold hover:shadow-lg hover:shadow-brand-blue/20 transition-all text-xs uppercase tracking-widest"
-                >
-                  Book a Consultation
-                </button>
+                <Link
+  to="/contact"
+  className="block w-full mt-2 py-4 brand-gradient text-white rounded-xl font-bold hover:shadow-lg hover:shadow-brand-blue/20 transition-all text-xs uppercase tracking-widest text-center"
+>
+  Book a Consultation
+</Link>
               </li>
             </ul>
           </div>
