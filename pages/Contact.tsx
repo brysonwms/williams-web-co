@@ -7,14 +7,14 @@ const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    service: 'Web Design',
+    service: 'Custom Website Design & Hosting',
     message: ''
   });
 
- const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
-  const encodedData = new URLSearchParams({
+  const formDataEncoded = new URLSearchParams({
     "form-name": "contact",
     name: formData.name,
     email: formData.email,
@@ -25,10 +25,8 @@ const Contact: React.FC = () => {
   try {
     await fetch("/", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: encodedData,
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: formDataEncoded,
     });
 
     setSubmitted(true);
@@ -51,7 +49,7 @@ const Contact: React.FC = () => {
               We respond to all inquiries within one business day. Ready to level up? Let's talk.
             </p>
 
-            <div className="space-y-10 mb-12">
+            <div className="space-y-10">
               {[
                 { icon: <Mail />, label: 'Email Us', value: 'brysonwms.business@gmail.com', color: 'text-brand-blue' },
                 { icon: <Phone />, label: 'Call Us', value: '(919) 888-0676', color: 'text-brand-purple' },
@@ -66,12 +64,6 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div className="p-10 rounded-[2.5rem] bg-white border border-zinc-100 shadow-xl shadow-brand-blue/5 relative">
-              <div className="absolute top-4 right-4 text-brand-blue opacity-10 font-black text-6xl uppercase tracking-tighter">Offer</div>
-              <h3 className="text-xl font-black text-zinc-900 mb-4">Free Speed & SEO Audit</h3>
-              <p className="text-zinc-600 text-sm leading-relaxed font-medium">Include your URL in the message for a custom video breakdown of how we can improve your performance.</p>
             </div>
           </div>
 
@@ -92,7 +84,7 @@ const Contact: React.FC = () => {
                 </button>
               </div>
             ) : (
-             <form
+              <form
   name="contact"
   method="POST"
   data-netlify="true"
@@ -101,14 +93,14 @@ const Contact: React.FC = () => {
   className="space-y-8"
 >
   <input type="hidden" name="form-name" value="contact" />
-  
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">Your Name</label>
                     <input 
+                    name="name"
                       required
-                      type="text"
-                      name="name" 
+                      type="text" 
                       id="name"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -119,9 +111,9 @@ const Contact: React.FC = () => {
                   <div>
                     <label htmlFor="email" className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">Email Address</label>
                     <input 
+                    name="email"
                       required
                       type="email" 
-                      name="email"
                       id="email"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -134,25 +126,22 @@ const Contact: React.FC = () => {
                 <div>
                   <label htmlFor="service" className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">Service Interest</label>
                   <select 
+                  name="service"
                     id="service"
-                    name="service"
                     value={formData.service}
                     onChange={(e) => setFormData({...formData, service: e.target.value})}
                     className="w-full px-6 py-4 bg-zinc-50 border border-zinc-100 rounded-2xl focus:ring-2 focus:ring-brand-blue focus:bg-white transition-all outline-none font-bold appearance-none cursor-pointer"
                   >
-                    <option>Custom Web Design</option>
-                    <option>Premium Hosting Plan</option>
-                    <option>Full Agency Retainer</option>
-                    <option>Strategic SEO Audit</option>
+                    <option>Custom Website Design & Hosting</option>
                   </select>
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">Project Brief</label>
                   <textarea 
+                  name="message"
                     required
                     id="message"
-                    name="message"
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
