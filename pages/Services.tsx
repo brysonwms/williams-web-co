@@ -12,7 +12,7 @@ const Services: React.FC<ServicesProps> = ({ setCurrentPage }) => {
   return (
     <>
       <Helmet>
-        <title>Web Design & Hosting Services | Williams Web Co</title>
+        <title>Our Services | Williams Web Co</title>
         <meta
           name="description"
           content="Explore professional web design, hosting, and website management services tailored for small businesses by Williams Web Co."

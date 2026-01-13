@@ -11,7 +11,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ setCurrentPage }) => {
   return (
     <>
       <Helmet>
-        <title>Web Design Portfolio | Williams Web Co</title>
+        <title>Portfolio | Williams Web Co</title>
         <meta
           name="description"
           content="View recent website projects built by Williams Web Co. Clean, fast, and conversion-focused designs for small businesses."
