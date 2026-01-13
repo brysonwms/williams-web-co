@@ -101,7 +101,7 @@ const Contact: React.FC = () => {
   className="space-y-8"
 >
   <input type="hidden" name="form-name" value="contact" />
-<input type="hidden" name="bot-field" />
+  
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-xs font-black text-zinc-400 uppercase tracking-widest mb-3">Your Name</label>
